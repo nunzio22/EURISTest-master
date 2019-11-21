@@ -55,9 +55,16 @@ namespace EURISTest.Controllers
         {
             if (ModelState.IsValid)
             {
+                //crea una stringa rando come id
                 Guid id = Guid.NewGuid();
                 string idS = id.ToString();
                 product.ProductID = idS;
+                
+                // //se si volesse creare un id auto incrementate si puo fare così
+                // var idN=((db.Products.Include(p => p.Catalogo)).ToList()).Count;
+                ////se ProducutID fosse intero non servirebbe trasformare idn in stringa con il ToString
+                //product.ProductID = idN.ToString();
+                
                 db.Products.Add(product);
                 db.SaveChanges();
                 return RedirectToAction("Index");
