@@ -193,17 +193,21 @@
     <Compile Include="App_Start\RouteConfig.cs" />
     <Compile Include="App_Start\WebApiConfig.cs" />
     <Compile Include="Controllers\AccountController.cs" />
-    <Compile Include="Controllers\CatalogController.cs" />
+    <Compile Include="Controllers\CatalogoController.cs" />
+    <Compile Include="Controllers\CategoriaController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
-    <Compile Include="Controllers\ProductController.cs" />
+    <Compile Include="Controllers\ProdottoController.cs" />
+    <Compile Include="Controllers\VenditaController.cs" />
     <Compile Include="Filters\InitializeSimpleMembershipAttribute.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
     <Compile Include="Models\AccountModels.cs" />
-    <Compile Include="Models\Catalog.cs" />
+    <Compile Include="Models\Catalogo.cs" />
+    <Compile Include="Models\Categoria.cs" />
     <Compile Include="Models\DataBaseContext.cs" />
-    <Compile Include="Models\Product.cs" />
+    <Compile Include="Models\Prodotto.cs" />
+    <Compile Include="Models\Vendite.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
@@ -323,16 +327,31 @@
     <Content Include="Views\Shared\_LoginPartial.cshtml" />
     <Content Include="Views\Shared\_Layout.cshtml" />
     <Content Include="Views\Web.config" />
-    <Content Include="Views\Catalog\Index.cshtml" />
-    <Content Include="Views\Catalog\Details.cshtml" />
-    <Content Include="Views\Catalog\Create.cshtml" />
-    <Content Include="Views\Catalog\Edit.cshtml" />
-    <Content Include="Views\Catalog\Delete.cshtml" />
-    <Content Include="Views\Product\Index.cshtml" />
-    <Content Include="Views\Product\Details.cshtml" />
-    <Content Include="Views\Product\Create.cshtml" />
-    <Content Include="Views\Product\Edit.cshtml" />
-    <Content Include="Views\Product\Delete.cshtml" />
+    <Content Include="Views\Prodotto\Index.cshtml" />
+    <Content Include="Views\Prodotto\Details.cshtml" />
+    <Content Include="Views\Prodotto\Create.cshtml" />
+    <Content Include="Views\Prodotto\Edit.cshtml" />
+    <Content Include="Views\Prodotto\Delete.cshtml" />
+    <Content Include="Views\Catalogo\Index.cshtml" />
+    <Content Include="Views\Catalogo\Details.cshtml" />
+    <Content Include="Views\Catalogo\Create.cshtml" />
+    <Content Include="Views\Catalogo\Edit.cshtml" />
+    <Content Include="Views\Catalogo\Delete.cshtml" />
+    <Content Include="Views\Vendita\Index.cshtml" />
+    <Content Include="Views\Vendita\Details.cshtml" />
+    <Content Include="Views\Vendita\Create.cshtml" />
+    <Content Include="Views\Vendita\Edit.cshtml" />
+    <Content Include="Views\Vendita\Delete.cshtml" />
+    <Content Include="Views\Categoria\Index.cshtml" />
+    <Content Include="Views\Categoria\Details.cshtml" />
+    <Content Include="Views\Categoria\Create.cshtml" />
+    <Content Include="Views\Categoria\Edit.cshtml" />
+    <Content Include="Views\Categoria\Delete.cshtml" />
+    <Content Include="Views\Catalogo\Prodotti.cshtml" />
+    <Content Include="Views\Catalogo\NewProdotto.cshtml" />
+    <Content Include="Views\Catalogo\DeletePro.cshtml" />
+    <Content Include="Views\Catalogo\EditV.cshtml" />
+    <Content Include="Views\Prodotto\Cataloghi.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Service Include="{508349B6-6B84-4DF5-91F0-309BEEBAD82D}" />

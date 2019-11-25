@@ -1,0 +1,43 @@
+﻿@model EURISTest.Models.Vendita
+
+@{
+    ViewBag.Title = "Details";
+}
+
+<h2>Details</h2>
+
+<fieldset>
+    <legend>Vendita</legend>
+
+    <div class="display-label">
+         @Html.DisplayNameFor(model => model.Cataloghi.Nome)
+    </div>
+    <div class="display-field">
+        @Html.DisplayFor(model => model.Cataloghi.Nome)
+    </div>
+
+    <div class="display-label">
+         @Html.DisplayNameFor(model => model.Prodotti.Nome)
+    </div>
+    <div class="display-field">
+        @Html.DisplayFor(model => model.Prodotti.Nome)
+    </div>
+
+    <div class="display-label">
+         @Html.DisplayNameFor(model => model.PrezzoI)
+    </div>
+    <div class="display-field">
+        @Html.DisplayFor(model => model.PrezzoI)
+    </div>
+
+    <div class="display-label">
+         @Html.DisplayNameFor(model => model.Prezzo)
+    </div>
+    <div class="display-field">
+        @Html.DisplayFor(model => model.Prezzo)
+    </div>
+</fieldset>
+<p>
+    @Html.ActionLink("Edit", "Edit", new { id=Model.VenditeID }) |
+    @Html.ActionLink("Back to List", "Index")
+</p>

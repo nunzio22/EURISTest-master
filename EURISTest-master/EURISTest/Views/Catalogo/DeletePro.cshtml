@@ -1,0 +1,34 @@
+﻿@model EURISTest.Models.Vendita
+
+@{
+    ViewBag.Title = "DeletePro";
+}
+
+<h2>Delete</h2>
+
+<h3>Are you sure you want to delete this?</h3>
+<fieldset>
+    <legend>Vendiya</legend>
+
+    <div class="display-label">
+        Catalogo
+    </div>
+    <div class="display-field">
+        @Html.DisplayFor(model => model.Cataloghi.Nome)
+    </div>
+
+    <div class="display-label">
+        Prodotto
+    </div>
+    <div class="display-field">
+        @Html.DisplayFor(model => model.Prodotti.Nome)
+    </div>
+</fieldset>
+@using (Html.BeginForm())
+{
+    @Html.AntiForgeryToken()
+    <p>
+        <input type="submit" value="DeletePro" /> |
+        @Html.ActionLink("Back to List", "Index")
+    </p>
+}

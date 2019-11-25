@@ -1,0 +1,45 @@
+﻿@model IEnumerable<EURISTest.Models.Vendita>
+
+@{
+    ViewBag.Title = "Prodotti";
+}
+
+@foreach (var item in Model)
+{
+    <tr>
+        <td>
+            <h2> @Html.DisplayFor(modelItem => item.Prodotti.Nome)</h2>
+        </td>
+    </tr>
+    break;
+}
+
+<table>
+    <tr>
+        <th>
+            Catalogo
+        </th>
+        <td></td>
+        <th>
+            @Html.DisplayNameFor(model => model.Prezzo)
+        </th>
+        <th></th>
+    </tr>
+
+    @foreach (var item in Model)
+    {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.Cataloghi.Nome)
+            </td>
+            <td></td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Prezzo)
+            </td>
+        </tr>
+    }
+
+</table>
+<p>
+    @Html.ActionLink("Back to List", "Index")
+</p>

@@ -1,0 +1,30 @@
+﻿@model EURISTest.Models.Prodotto
+
+@{
+    ViewBag.Title = "Details";
+}
+
+<h2>Details</h2>
+
+<fieldset>
+    <legend>Prodotto</legend>
+
+    <div class="display-label">
+         <h4>Prodotto</h4>
+    </div>
+    <div class="display-field">
+        @Html.DisplayFor(model => model.Nome)
+    </div>
+
+    <div class="display-label">
+        <h4>@Html.DisplayNameFor(model => model.Descrizione)</h4>
+    </div>
+    <div class="display-field">
+        @Html.DisplayFor(model => model.Descrizione)
+    </div>
+
+</fieldset>
+<p>
+    @Html.ActionLink("Edit", "Edit", new { id=Model.ProdottoID }) |
+    @Html.ActionLink("Back to List", "Index")
+</p>
