@@ -15,7 +15,10 @@ namespace EURISTest.Controllers
 
         //
         // GET: /Catalogo/
-
+        /// <summary>
+        /// Visualizazione dei cataloghi
+        /// </summary>
+        /// <returns>ritorna una lista di cataloghi presenti nel db</returns>
         public ActionResult Index()
         {
             return View(db.Cataloghi.ToList());
@@ -23,7 +26,11 @@ namespace EURISTest.Controllers
 
         //
         // GET: /Catalogo/Details/5
-
+        /// <summary>
+        /// Detagli del catalogo 
+        /// </summary>
+        /// <param name="id">id di quel catalo specifico</param>
+        /// <returns>ritorna un ogetto di tipo catalogo</returns>
         public ActionResult Details(int id = 0)
         {
             Catalogo catalogo = db.Cataloghi.Find(id);
@@ -34,17 +41,24 @@ namespace EURISTest.Controllers
             return View(catalogo);
         }
 
-
+        /// <summary>
+        /// Visualizazione i prodotti al interno del catalogo
+        /// </summary>
+        /// <param name="id">id del catalogo del quale si vogliono vedere i prodotti</param>
+        /// <returns>ritorna una lista di associazione tra il catalogo e i suoi prodotti con il prezzo</returns>
         public ActionResult Prodotti(int id=0)
-        {
+        {   
+            //prendo l'ogetto catalogo e ci inserisco la riga db della tabella catalogo di id ugale a quello passato
             Catalogo catalogo = db.Cataloghi.Find(id);
+            //controllo se l'ogetto è stato creato in modo coretto
             if (catalogo == null)
             {
                 return HttpNotFound();
             }
-            var vendite = db.Vendite.Include(v => v.Cataloghi).Include(v => v.Prodotti);
+            //creo una lista della tabella intermedia tra prodotti e cataloghi
             List<Vendita> pro = new List<Vendita>();
-            foreach (var item in vendite)
+            //trovo gli elementi dove il catologo id è presente e gli aggiungo alla lsta creata qui sopra
+            foreach (var item in (db.Vendite.Include(v => v.Cataloghi).Include(v => v.Prodotti)).ToList())
             {
                 if (item.Cataloghi.CatalogoID == catalogo.CatalogoID)
                     pro.Add(item);
@@ -70,6 +84,7 @@ namespace EURISTest.Controllers
         {
             if (ModelState.IsValid)
             {
+                //creazione id auto incrementante
                 List<Catalogo> p = new List<Catalogo>();
                 var id = p.Count + 1;
                 catalogo.CatalogoID = id;
@@ -83,14 +98,30 @@ namespace EURISTest.Controllers
 
         public ActionResult NewProdotto(int id = 0)
         {
+            //creao le liste da mandare alla view
             List<Catalogo> c = new List<Catalogo>();
-            c.Add(db.Cataloghi.Find(id));
+            List<Prodotto> p = db.Prodotti.ToList();
+
+
+            var catalogo = db.Cataloghi.Find(id);
+            c.Add(catalogo);
 
             if (c == null)
             {
                 return HttpNotFound();
             }
-            ViewBag.FKProdottoID = new SelectList(db.Prodotti, "ProdottoID", "Nome");
+            //controllo di rimuovere nella lista tutti i prodotto gia inseriti nel catalogo 
+            foreach (var item in (db.Vendite.Include(pro => pro.Cataloghi).Include(pro => pro.Prodotti)).ToList())
+            {
+                if (item.Cataloghi.CatalogoID==catalogo.CatalogoID)
+                    foreach (var prodotto in db.Prodotti.ToList())
+                    {
+                        if ((prodotto.ProdottoID == item.Prodotti.ProdottoID))
+                            p.Remove(prodotto);
+                    }
+            }
+
+            ViewBag.FKProdottoID = new SelectList(p, "ProdottoID", "Nome");
             ViewBag.FKCatalogoID = new SelectList(c, "CatalogoID", "Nome");
             return View();
         }
@@ -104,6 +135,7 @@ namespace EURISTest.Controllers
         {
             if (ModelState.IsValid)
             {
+                //id generato casualmente tipo string
                 Guid gu = Guid.NewGuid();
                 string idS = gu.ToString();
                 vendita.VenditeID = idS;
