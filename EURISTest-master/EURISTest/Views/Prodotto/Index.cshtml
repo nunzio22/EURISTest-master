@@ -1,7 +1,9 @@
 ﻿@model IEnumerable<EURISTest.Models.Prodotto>
 
 @{
-    ViewBag.Title = "Index";
+                /**/
+
+                ViewBag.Title = "Index";
 }
 
 <h2>Prodotti</h2>
@@ -9,6 +11,14 @@
 <p>
     @Html.ActionLink("Create New", "Create")
 </p>
+@using (Html.BeginForm())
+{
+<p>
+    Categoria: @Html.DropDownList("Categorie", "All")
+    Prodotto: @Html.TextBox("SearchString") <br />
+    <input type="submit" value="Filter" />
+</p>
+}
 <table>
     <tr>
         <th>
@@ -20,21 +30,22 @@
         <th></th>
     </tr>
 
-@foreach (var item in Model) {
-    <tr>
-        <td>
-            @Html.DisplayFor(modelItem => item.Nome)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.Categorie.Nome)
-        </td>
-        <td>
-            @Html.ActionLink("Edit", "Edit", new { id = item.ProdottoID }) |
-            @Html.ActionLink("Details", "Details", new { id = item.ProdottoID }) |
-            @Html.ActionLink("Delete", "Delete", new { id = item.ProdottoID }) |
-            @Html.ActionLink("Cataloghi", "Cataloghi", new { id = item.ProdottoID })
-        </td>
-    </tr>
+    @foreach (var item in Model)
+    {
+<tr>
+    <td>
+        @Html.DisplayFor(modelItem => item.Nome)
+    </td>
+    <td>
+        @Html.DisplayFor(modelItem => item.Categorie.Nome)
+    </td>
+    <td>
+        @Html.ActionLink("Edit", "Edit", new { id = item.ProdottoID }) |
+        @Html.ActionLink("Details", "Details", new { id = item.ProdottoID }) |
+        @Html.ActionLink("Delete", "Delete", new { id = item.ProdottoID }) |
+        @Html.ActionLink("Cataloghi", "Cataloghi", new { id = item.ProdottoID })
+    </td>
+</tr>
 }
 
 </table>

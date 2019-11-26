@@ -13,7 +13,13 @@
     </tr>
     break;
 }
-
+@using (Html.BeginForm())
+{
+    <p>
+        Prodotto: @Html.TextBox("SearchString") <br />
+        <input type="submit" value="Filter" />
+    </p>
+}
 <table>
     <tr>
         <th>
@@ -28,7 +34,7 @@
 
     @foreach (var item in Model)
     {
-        <tr> 
+        <tr>
             <td>
                 @Html.DisplayFor(modelItem => item.Prodotti.Nome)
             </td>

@@ -46,8 +46,14 @@ namespace EURISTest.Controllers
         /// </summary>
         /// <param name="id">id del catalogo del quale si vogliono vedere i prodotti</param>
         /// <returns>ritorna una lista di associazione tra il catalogo e i suoi prodotti con il prezzo</returns>
-        public ActionResult Prodotti(int id=0)
-        {   
+        public ActionResult Prodotti(int id, string searchString)
+        {
+            var vendita = (db.Vendite.Include(p => p.Cataloghi).Include(p => p.Prodotti));
+            //ricerca prodotto
+            if (!String.IsNullOrEmpty(searchString))
+            {
+                 vendita = vendita.Where(s => s.Prodotti.Nome.Contains(searchString));
+            }   
             //prendo l'ogetto catalogo e ci inserisco la riga db della tabella catalogo di id ugale a quello passato
             Catalogo catalogo = db.Cataloghi.Find(id);
             //controllo se l'ogetto è stato creato in modo coretto
@@ -58,14 +64,15 @@ namespace EURISTest.Controllers
             //creo una lista della tabella intermedia tra prodotti e cataloghi
             List<Vendita> pro = new List<Vendita>();
             //trovo gli elementi dove il catologo id è presente e gli aggiungo alla lsta creata qui sopra
-            foreach (var item in (db.Vendite.Include(v => v.Cataloghi).Include(v => v.Prodotti)).ToList())
+            foreach (var item in vendita.ToList())
             {
-                if (item.Cataloghi.CatalogoID == catalogo.CatalogoID)
+                if (item.FKCataloghiID == catalogo.CatalogoID)
                     pro.Add(item);
             }
            
             return View(pro);
         }
+
 
         //
         // GET: /Catalogo/Create

@@ -16,12 +16,28 @@ namespace EURISTest.Controllers
         //
         // GET: /Prodotto/
 
-        public ActionResult Index()
+        public ActionResult Index(string categorie, string searchString)
         {
-            List<Prodotto> ordinata = new List<Prodotto>();
-            ordinata = (db.Prodotti.Include(p => p.Categorie)).ToList();
-            ordinata.Sort();
-            return View(ordinata);
+            var ordinata = (db.Prodotti.Include(p => p.Categorie));
+
+            if (!String.IsNullOrEmpty(searchString))
+            {
+                ordinata = ordinata.Where(s => s.Nome.Contains(searchString));
+            }
+            var CatQuary = from d in db.Categorie
+                           orderby d.CatalogID
+                           select d.Nome;
+            var CatList = CatQuary.ToList();
+            ViewBag.Categorie = new SelectList(CatList);
+
+            if (!string.IsNullOrEmpty(categorie))
+            {
+                ordinata = ordinata.Where(x => x.Categorie.Nome == categorie);
+            }
+            var ordinato = ordinata.ToList();
+
+            ordinato.Sort();
+            return View(ordinato);
         }
 
         //
