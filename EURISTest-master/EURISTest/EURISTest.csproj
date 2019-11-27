@@ -197,7 +197,6 @@
     <Compile Include="Controllers\CategoriaController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\ProdottoController.cs" />
-    <Compile Include="Controllers\VenditaController.cs" />
     <Compile Include="Filters\InitializeSimpleMembershipAttribute.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
@@ -337,11 +336,6 @@
     <Content Include="Views\Catalogo\Create.cshtml" />
     <Content Include="Views\Catalogo\Edit.cshtml" />
     <Content Include="Views\Catalogo\Delete.cshtml" />
-    <Content Include="Views\Vendita\Index.cshtml" />
-    <Content Include="Views\Vendita\Details.cshtml" />
-    <Content Include="Views\Vendita\Create.cshtml" />
-    <Content Include="Views\Vendita\Edit.cshtml" />
-    <Content Include="Views\Vendita\Delete.cshtml" />
     <Content Include="Views\Categoria\Index.cshtml" />
     <Content Include="Views\Categoria\Details.cshtml" />
     <Content Include="Views\Categoria\Create.cshtml" />

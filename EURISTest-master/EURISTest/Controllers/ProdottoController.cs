@@ -6,7 +6,7 @@ using System.Linq;
 using System.Web;
 using System.Web.Mvc;
 using EURISTest.Models;
-
+//per i comenti guardare catalogocontroller
 namespace EURISTest.Controllers
 {
     public class ProdottoController : Controller

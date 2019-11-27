@@ -189,7 +189,11 @@ namespace EURISTest.Controllers
 
 
 
-
+        /// <summary>
+        /// Edit della vendita del raporto tra catalogo e prodotto
+        /// </summary>
+        /// <param name="id">l'ogetto vendita da modificare</param>
+        /// <returns>ritorna un modello vendita al quale sono associate delle select list blocate sul elemento da modificare</returns>
         public ActionResult EditV(string id = null)
         {
           
@@ -200,6 +204,7 @@ namespace EURISTest.Controllers
             {
                 return HttpNotFound();
             }
+            //creo la lista del catalogo e dei prodotti con unico elemento quello sottoposto alla modifica
             List<Catalogo> c = new List<Catalogo>();
             c.Add(db.Cataloghi.Find(idc));
             List<Prodotto> p = new List<Prodotto>();
@@ -216,6 +221,7 @@ namespace EURISTest.Controllers
         [ValidateAntiForgeryToken]
         public ActionResult EditV(Vendita vendita)
         {
+            //salva le modifiche fatte al db come l'edit autegenerato
             if (ModelState.IsValid)
             {
                 db.Entry(vendita).State = EntityState.Modified;
@@ -256,7 +262,11 @@ namespace EURISTest.Controllers
 
         //
         // GET: /ProductCatalog/Delete/5
-
+        /// <summary>
+        /// delete del prodoto al interno del catalogo quindi si distrugge l'elemento vendita intemedio 
+        /// </summary>
+        /// <param name="id">id del elemento vendita elemento puo essere anche la riga di db</param>
+        /// <returns></returns>
         public ActionResult DeletePro(string id = null)
         {
             Vendita vendita = db.Vendite.Find(id);
@@ -269,7 +279,8 @@ namespace EURISTest.Controllers
 
         //
         // POST: /ProductCatalog/Delete/5
-
+        // attenzione in questo caso mi e stato permesso chiamare la funzione deleteconfirmed poiche il parametro che prende è diverso da quella sopra ed il colegamento
+        //con il pulsante si effetua nella riga sotto
         [HttpPost, ActionName("DeletePro")]
         [ValidateAntiForgeryToken]
         public ActionResult DeleteConfirmed(string id)
